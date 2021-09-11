@@ -85,15 +85,14 @@ class MainPage(tk.Frame):
         self.alcInput.pack()
 
         # Input 3
-        ttk.Entry().place(relx=0.5, rely=0.49, anchor='center', relwidth=0.52)
-        # self.massVar = tk.StringVar()
-        # self.check_frame = ttk.LabelFrame(
-        #     self, text="Gewicht der Person (kg)", padding=(5, 5))
-        # self.massInput = tk.Entry(self.check_frame, font=(
-        #     "*Font", 13), relief="flat", fg="#ffffff", justify="center", textvariable=self.massVar)
-        # self.check_frame.place(relx=0.5, rely=0.49,
-        #                        anchor='center', relwidth=0.52)
-        # self.massInput.pack()
+        self.massVar = tk.StringVar()
+        self.check_frame = ttk.LabelFrame(
+            self, text="Gewicht der Person (kg)", padding=(5, 5))
+        self.massInput = tk.Entry(self.check_frame, font=(
+            "*Font", 13), relief="flat", fg="#ffffff", justify="center", textvariable=self.massVar)
+        self.check_frame.place(relx=0.5, rely=0.49,
+                               anchor='center', relwidth=0.52)
+        self.massInput.pack()
 
         # Combobox
         self.cmb = ttk.Combobox(self, values=(
