@@ -9,5 +9,5 @@ Datei für command line interface:   src\ **promilleRechner.py**
 ## Quellen
 
 * icon (https://icon-icons.com/de/symbol/bier/3068)
-* tkinter
+* tkinter (in Python miteinbegriffen)
 * azure ttk theme (https://github.com/rdbende/Azure-ttk-theme)
