@@ -1,7 +1,7 @@
 # Copyright © 2021 rdbende <rdbende@gmail.com>
 
-source theme/light.tcl
-source theme/dark.tcl
+source C:\\Users\\christian\\.aa_code\\schule\\promilleRechner\\src\\theme\\light.tcl
+source C:\\Users\\christian\\.aa_code\\schule\\promilleRechner\\src\\theme\\dark.tcl
 
 option add *tearOff 0
 

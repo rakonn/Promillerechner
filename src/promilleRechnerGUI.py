@@ -25,8 +25,10 @@ class Window(tk.Tk):
         tk.Tk.__init__(self, *args, **kwargs)
 
         tk.Tk.wm_title(self, "Promillerechner")
-        tk.Tk.iconbitmap(self, "../res/beer_3630.ico")
-        self.tk.call("source", "azure.tcl")
+        tk.Tk.iconbitmap(
+            self, "res\\beer_3630.ico")
+        self.tk.call(
+            "source", "src\\azure.tcl")
         self.tk.call("set_theme", "dark")
         self.geometry("300x485")
         self.resizable(False, False)
