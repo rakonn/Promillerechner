@@ -5,10 +5,9 @@ GUI und CL Promillerechner für Informatik. Nutzt Python tkinter und einen [tkk 
 Datei für grafische Oberfläche:     src\ **promilleRechnerGUI.py**
 Datei für command line interface:   src\ **promilleRechner.py**
 
-___
 
 ## Quellen
 
-*icon (https://icon-icons.com/de/symbol/bier/3068)
-*tkinter
-*azure ttk theme (https://github.com/rdbende/Azure-ttk-theme)
+* icon (https://icon-icons.com/de/symbol/bier/3068)
+* tkinter
+* azure ttk theme (https://github.com/rdbende/Azure-ttk-theme)
