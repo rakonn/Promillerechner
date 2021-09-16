@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter.constants import RADIOBUTTON
 import tkinter.ttk as ttk
 
 
@@ -18,29 +19,16 @@ class Utils:
             return 0.6
 
 
-class Window(tk.Tk):
+class App(tk.Frame):
 
     def __init__(self, *args, **kwargs):
-
-        tk.Tk.__init__(self, *args, **kwargs)
-
-        tk.Tk.wm_title(self, "Promillerechner")
-        tk.Tk.iconbitmap(
-            self, "res\\beer_3630.ico")
-        self.tk.call(
-            "source", "src\\azure.tcl")
-        self.tk.call("set_theme", "dark")
-        self.geometry("300x485")
-        self.resizable(False, False)
-
-        container = tk.Frame(self)
-        container.pack(side="top", fill="both", expand=True)
+        tk.Frame.__init__(self, width=300, height=485)
 
         self.frames = {}
 
         for F in (MainPage, ResultsPage):
 
-            frame = F(container, self)
+            frame = F(self)
 
             self.frames[F] = frame
 
@@ -59,10 +47,10 @@ class Window(tk.Tk):
 
 
 class MainPage(tk.Frame):
-    def __init__(self, root, controller: Window) -> None:
+    def __init__(self, root) -> None:
         tk.Frame.__init__(self, root)
 
-        self.controller = controller
+        self.root = root
         self.createPage()
 
     def createPage(self):
@@ -112,14 +100,14 @@ class MainPage(tk.Frame):
     def manageInputs(self):
         goOn = True
         try:
-            volumeDrank = float(self.volVar.get())
+            volumeDrank = float(self.volVar.get().replace(",", "."))
             self.volumeInput["fg"] = "#ffffff"
         except ValueError:
             self.volumeInput["fg"] = "red"
             goOn = False
 
         try:
-            alcoholPercentage = float(self.alcVar.get())
+            alcoholPercentage = float(self.alcVar.get().replace(",", "."))
             self.alcInput["fg"] = "#ffffff"
             if alcoholPercentage > 100.00:
                 raise ValueError()
@@ -128,7 +116,7 @@ class MainPage(tk.Frame):
             goOn = False
 
         try:
-            massPerson = float(self.massVar.get())
+            massPerson = float(self.massVar.get().replace(",", "."))
             self.massInput["fg"] = "#ffffff"
         except ValueError:
             self.massInput["fg"] = "red"
@@ -142,18 +130,17 @@ class MainPage(tk.Frame):
         reductionFactor = Utils.getReductionFactor(sortPerson)
         massAlcohol = Utils.calcAlcMass(volumeDrank, alcoholPercentage)
         bloodAlcohol = round(Utils.calcBloodAlc(
-            massAlcohol, massPerson, reductionFactor), 6)
+            massAlcohol, massPerson, reductionFactor), 3)
 
-        self.controller.setBloodAlc(bloodAlcohol)
-        self.controller.show_frame(ResultsPage)
+        self.root.setBloodAlc(bloodAlcohol)
+        self.root.show_frame(ResultsPage)
 
 
 class ResultsPage(tk.Frame):
-    def __init__(self, root, controller: Window) -> None:
-
+    def __init__(self, root) -> None:
         tk.Frame.__init__(self, root)
 
-        self.controller = controller
+        self.root = root
         self.bloodAlcohol = 0
         self.createPage()
 
@@ -166,7 +153,7 @@ class ResultsPage(tk.Frame):
         self.alcLabel.place(relx=0.5, rely=0.3, anchor='center')
 
         self.button = ttk.Button(
-            self, text="Zurück", command=lambda: self.controller.show_frame(MainPage))
+            self, text="Zurück", command=lambda: self.root.show_frame(MainPage))
         self.button.place(relx=0.5, rely=0.85, anchor='center',
                           relwidth=0.52, relheight=0.1)
 
@@ -175,7 +162,30 @@ class ResultsPage(tk.Frame):
 
 
 def main():
-    Window().mainloop()
+    root = tk.Tk()
+    root.title("Promillerechner")
+    root.geometry("300x485")
+    root.iconbitmap("res\\beer_3630.ico")
+    root.resizable(False, False)
+
+    # Simply set the theme
+    root.tk.call(
+        "source", "C:\\Users\\christian\\.aa_code\\schule\\promilleRechner\\src\\azure.tcl")
+    root.tk.call("set_theme", "dark")
+
+    app = App(root)
+    app.pack(fill="both", expand=True)
+
+    # Set a minsize for the window, and place it in the middle
+    # root.update()
+    # root.minsize(root.winfo_width(), root.winfo_height())
+    # x_cordinate = int((root.winfo_screenwidth() / 2) -
+    #                   (root.winfo_width() / 2))
+    # y_cordinate = int((root.winfo_screenheight() / 2) -
+    #                   (root.winfo_height() / 2))
+    # root.geometry("+{}+{}".format(x_cordinate, y_cordinate-20))
+
+    root.mainloop()
 
 
 if __name__ == "__main__":
