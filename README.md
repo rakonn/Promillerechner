@@ -1,6 +1,6 @@
 # Promillerechner
 
-GUI und CL Promillerechner für Informatik. 
+GUI und CLI Promillerechner 
 
 Nutzt Python tkinter und einen [tkk skin](https://github.com/rdbende/Azure-ttk-theme). Siehe /src für code
 
