@@ -2,8 +2,6 @@
 
 GUI und CLI Promillerechner 
 
-Here's a demo image:
-
 <img src="src/images/demoImage.png" width=40% height=40%>
 
 Nutzt Python tkinter und einen [tkk skin](https://github.com/rdbende/Azure-ttk-theme). Siehe /src für code
