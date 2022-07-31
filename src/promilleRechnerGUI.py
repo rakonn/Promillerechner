@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter.constants import RADIOBUTTON
 import tkinter.ttk as ttk
+import pathlib, os
 
 
 class Utils:
@@ -168,9 +169,12 @@ def main():
     root.iconbitmap("res\\beer_3630.ico")
     root.resizable(False, False)
 
-    # Simply set the theme
+    # set the theme
+    themeFilename = "azure.tcl"
+    currentDir = pathlib.Path(__file__).parent.resolve()
+    themePath = os.path.join(currentDir, themeFilename)
     root.tk.call(
-        "source", "C:\\Users\\christian\\.aa_code\\schule\\promilleRechner\\src\\azure.tcl")
+        "source", themePath)
     root.tk.call("set_theme", "dark")
 
     app = App(root)
