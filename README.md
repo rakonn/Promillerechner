@@ -13,5 +13,5 @@ Nutzt Python tkinter und einen [tkk skin](https://github.com/rdbende/Azure-ttk-t
 ## Quellen
 
 * icon (https://icon-icons.com/de/symbol/bier/3068)
-* tkinter (in Python miteinbegriffen)
+* tkinter (in Python mitinbegriffen)
 * azure ttk theme (https://github.com/rdbende/Azure-ttk-theme)
